@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "JzRTyTdn0KeyaDTlVtY3ctnkkj51TvDTyAoOk+lyZjVLWzCm9YlZpT7qfaGuSKGR2t2QdEgdXtuBqW7nfLt9dA==",
+  "success": true,
+  "projectFilePath": "/Users/codenationstudent/Projects/MoviesAPI/MoviesAPI/MoviesAPI.csproj",
+  "expectedPackageFiles": [
+    "/Users/codenationstudent/.nuget/packages/dapper/2.0.35/dapper.2.0.35.nupkg.sha512",
+    "/Users/codenationstudent/.nuget/packages/system.reflection.emit.lightweight/4.7.0/system.reflection.emit.lightweight.4.7.0.nupkg.sha512"
+  ],
+  "logs": []
+}
