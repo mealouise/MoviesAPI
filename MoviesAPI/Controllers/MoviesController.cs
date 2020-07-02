@@ -50,7 +50,7 @@ namespace MoviesAPI.Controllers
             }
            catch (SqlException error)
             {
-                return Ok(error.ToString());
+                return StatusCode(500, error);
             }
         }
 
