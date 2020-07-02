@@ -35,7 +35,7 @@ namespace MoviesAPI.Controllers
                 //builder.Password = "password999>";
                 //builder.InitialCatalog = "Movies";
 
-                Console.WriteLine("connecting to SQL server");
+                Console.WriteLine("all movies requested...");
 
                 using (IDbConnection db = new SqlConnection(connectionString))
                 {
@@ -45,12 +45,14 @@ namespace MoviesAPI.Controllers
                     //{
                     //    return NotFound();
                     //}
+                    Console.WriteLine("all movies retrieved");
                     return Ok(response);
                 }
             }
            catch (SqlException error)
             {
-                return Ok(error.ToString());
+                Console.WriteLine("something went wrong");
+                return StatusCode(500, error.ToString());
             }
         }
 
@@ -58,11 +60,10 @@ namespace MoviesAPI.Controllers
         [Route("MoviesAPI/Movies/movie-details/{MovieID:int}")]
         public ActionResult<Movie> GetById(int MovieID)
         {
-            // is it an int?
             var connectionString = "server = (local); user id = sa; " +
             "password=dvc1174580;initial catalog=MoviesDB";
 
-            Console.WriteLine("now connecting to SQL server - getting movie details...");
+            Console.WriteLine($"user requested details for movie with MovieID: {MovieID}");
 
             using (IDbConnection db = new SqlConnection(connectionString))
             {
@@ -71,8 +72,11 @@ namespace MoviesAPI.Controllers
                 if (oneMovie == null)
                 {
                     // {message: "movie not found"}
+                    Console.WriteLine("user requested movie does not exist");
                     return NotFound(new { message = "Movie not found" });
                 }
+
+                Console.WriteLine("requested movie found");
                 return Ok(oneMovie);
             }
         }
@@ -84,31 +88,44 @@ namespace MoviesAPI.Controllers
             //return Ok("add movie to database");
 
             // create a Movie instance
-
-            var connectionString = "server = (local); user id = sa; " +
-                "password=dvc1174580;initial catalog=MoviesDB";
-
-            Console.WriteLine("now connecting to SQL server");
-            using (IDbConnection db = new SqlConnection(connectionString))
+            try
             {
-                // instead of Values (@....)
-                // Values (MovieInstance.MovieName...)
 
-                string newMovieQuery = @"INSERT INTO Movies(MovieName, AgeRating, Price, ReleaseDate, Genre) " +
-                    "VALUES (@MovieName, @AgeRating, @Price, @ReleaseDate, @Genre)";
+                Movie movieInstance = new Movie(movieName, ageRating, price, releaseDate, genre);
+                //Console.WriteLine(movieInstance.ReleaseDate);
 
-                var result = db.Execute(newMovieQuery, new
+                var connectionString = "server = (local); user id = sa; " +
+                    "password=dvc1174580;initial catalog=MoviesDB";
+
+                Console.WriteLine("user requested movie creation");
+
+                using (IDbConnection db = new SqlConnection(connectionString))
                 {
-                    MovieName = movieName,
-                    AgeRating = ageRating,
-                    Price = price,
-                    ReleaseDate = releaseDate,
-                    Genre = genre,
-                });
+                    // instead of Values (@....)
+                    // Values (MovieInstance.MovieName...)
 
-                // if result = 1 return Ok(MovieInstance);
+                    string newMovieQuery = @"INSERT INTO Movies(MovieName, AgeRating, Price, ReleaseDate, Genre) " +
+                        "VALUES (@MovieName, @AgeRating, @Price, @ReleaseDate, @Genre)";
 
-                return Ok(result); // just says 1 item has been created     
+                    //var result = db.Execute(newMovieQuery, new
+                    //{
+                    //    MovieName = movieName,
+                    //    AgeRating = ageRating,
+                    //    Price = price,
+                    //    ReleaseDate = releaseDate,
+                    //    Genre = genre,
+                    //});
+
+                    var result = db.Execute(newMovieQuery, movieInstance);
+
+                    // if result = 1 return Ok(MovieInstance);
+                    Console.WriteLine("movie successfully created");
+                    return Ok(movieInstance); // just says 1 item has been created     
+                }
+            }
+            catch
+            {
+                return BadRequest(new { message = "Please enter the correct information to create a movie" });
             }
         }
 
@@ -119,11 +136,14 @@ namespace MoviesAPI.Controllers
             var connectionString = "server = (local); user id = sa; " +
                 "password=dvc1174580;initial catalog=MoviesDB";
 
-            Console.WriteLine("now connecting to SQL server");
+            Console.WriteLine($"user requested deletion of movie with MovieID: {movieID}");
+
             using (IDbConnection db = new SqlConnection(connectionString))
             {
                 string deleteQuery = "DELETE FROM [dbo].[Movies] WHERE MovieID = @MovieID";
                 var result = db.Execute(deleteQuery, new { MovieID = movieID });
+
+                Console.WriteLine("movie successfully deleted");
                 return Ok(result);
             }
         }
