@@ -28,7 +28,7 @@ namespace MoviesAPI.Controllers
             try
             {
                 var connectionString = "server = (local); user id = sa; " +
-                "password=password999>;initial catalog=Movies";
+                "password=dvc1174580;initial catalog=MoviesDB";
 
                 //SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
                 //builder.DataSource = "localhost,1433";
@@ -66,7 +66,7 @@ namespace MoviesAPI.Controllers
                 return BadRequest(new { message = "invalid MovieID, please provide ID greater than 0" });
             }
             var connectionString = "server = (local); user id = sa; " +
-            "password=password999>;initial catalog=Movies";
+                "password=dvc1174580;initial catalog=MoviesDB";
 
             Console.WriteLine($"user requested details for movie with MovieID: {MovieID}");
             try
@@ -77,7 +77,6 @@ namespace MoviesAPI.Controllers
                         ("SELECT * FROM [dbo].[Movies]" + "WHERE MovieID = @MovieID", new { MovieID }).SingleOrDefault();
                     if (oneMovie == null)
                     {
-                        // {message: "movie not found"}
                         Console.WriteLine("user requested movie does not exist");
                         return NotFound(new { message = "Movie not found" });
                     }
@@ -96,20 +95,29 @@ namespace MoviesAPI.Controllers
        
         [HttpPost]
         [Route("MoviesAPI/Movies/Create-Movie")]
-        public ActionResult<Movie> AddMovie(string movieName, int ageRating, float price, DateTime releaseDate, string genre)
+        public ActionResult<Movie> AddMovie(string movieName, int ageRating, double price, DateTime releaseDate, string genre)
         {
             //return BadRequest(new { message = "Please enter the correct information to create a movie" });
             //return Ok("add movie to database");
+            Movie movieInstance = new Movie()
+            {
+                MovieName = movieName,
+                AgeRating = ageRating,
+                Price = price,
+                ReleaseDate = releaseDate,
+                Genre = genre
+            };
 
-            // create a Movie instance
+            if (!Validation.ValidateMovie(movieInstance))
+            {
+                return BadRequest(new { message = "Please enter valid values" });
+            }
+            
             try
             {
 
-                Movie movieInstance = new Movie(movieName, ageRating, price, releaseDate, genre);
-                //Console.WriteLine(movieInstance.ReleaseDate);
-
                 var connectionString = "server = (local); user id = sa; " +
-                    "password=password999>;initial catalog=Movies";
+                "password=dvc1174580;initial catalog=MoviesDB";
 
                 Console.WriteLine("user requested movie creation");
 
@@ -133,15 +141,8 @@ namespace MoviesAPI.Controllers
                     var result = db.Execute(newMovieQuery, movieInstance);
 
                     // if result = 1 return Ok(MovieInstance);
-                    if (result == 1)
-                    {
-                        Console.WriteLine("movie successfully created");
-                        return Ok(movieInstance); 
-                    }
-                    else
-                    {
-                        return BadRequest(new { message = "invalid MovieID, please provide ID greater than 0" });
-                    }
+                    Console.WriteLine("movie successfully created");
+                    return Ok(movieInstance);
                        
                 }
             }
@@ -162,7 +163,7 @@ namespace MoviesAPI.Controllers
             }
 
             var connectionString = "server = (local); user id = sa; " +
-                "password=password999>;initial catalog=Movies";
+                "password=dvc1174580;initial catalog=MoviesDB";
 
             Console.WriteLine($"user requested deletion of movie with MovieID: {movieID}");
             try

@@ -23,6 +23,20 @@ namespace MoviesAPI.Models
 
         //    }
         //}
+
+        static public Boolean ValidateMovie(Movie movie)
+        {
+            DateTime tooEarly = new DateTime(1900, 01, 01);
+            int compare = movie.ReleaseDate.CompareTo(tooEarly);
+            if (movie.AgeRating == 0 || movie.Price == 0 || compare < 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }
 

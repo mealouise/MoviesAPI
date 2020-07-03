@@ -84,3 +84,7 @@
 /Users/kaela/Code/Projects/MoviesAPI/MoviesAPI/obj/Debug/netcoreapp3.1/MoviesAPI.dll
 /Users/kaela/Code/Projects/MoviesAPI/MoviesAPI/obj/Debug/netcoreapp3.1/MoviesAPI.pdb
 /Users/kaela/Code/Projects/MoviesAPI/MoviesAPI/obj/Debug/netcoreapp3.1/MoviesAPI.genruntimeconfig.cache
+/Users/kaela/Code/Projects/MoviesAPI/MoviesAPI/bin/Debug/netcoreapp3.1/FluentValidation.dll
+/Users/kaela/Code/Projects/MoviesAPI/MoviesAPI/bin/Debug/netcoreapp3.1/FluentValidation.AspNetCore.dll
+/Users/kaela/Code/Projects/MoviesAPI/MoviesAPI/bin/Debug/netcoreapp3.1/FluentValidation.DependencyInjectionExtensions.dll
+/Users/kaela/Code/Projects/MoviesAPI/MoviesAPI/obj/Debug/netcoreapp3.1/MoviesAPI.MvcApplicationPartsAssemblyInfo.cs
