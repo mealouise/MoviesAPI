@@ -8,6 +8,7 @@ using Dapper;
 using System.Data;
 using System.Data.SqlClient;
 
+
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace MoviesAPI.Controllers
@@ -27,7 +28,7 @@ namespace MoviesAPI.Controllers
             try
             {
                 var connectionString = "server = (local); user id = sa; " +
-                "password=dvc1174580;initial catalog=MoviesDB";
+                "password=password999>;initial catalog=Movies";
 
                 //SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
                 //builder.DataSource = "localhost,1433";
@@ -57,34 +58,47 @@ namespace MoviesAPI.Controllers
         }
 
         [HttpGet]
-        [Route("MoviesAPI/Movies/movie-details/{MovieID:int}")]
+        [Route("MoviesAPI/Movies/movie-details/{MovieID}")] //removed int from the route otherwise can't reach badrequest
         public ActionResult<Movie> GetById(int MovieID)
         {
+            if (Validation.ValidateID(MovieID)) //ADD TO OTHER METHODS
+            {
+                return BadRequest(new { message = "invalid MovieID, please provide ID greater than 0" });
+            }
             var connectionString = "server = (local); user id = sa; " +
-            "password=dvc1174580;initial catalog=MoviesDB";
+            "password=password999>;initial catalog=Movies";
 
             Console.WriteLine($"user requested details for movie with MovieID: {MovieID}");
-
-            using (IDbConnection db = new SqlConnection(connectionString))
+            try
             {
-                var oneMovie = db.Query<Movie>
-                    ("SELECT * FROM [dbo].[Movies]" + "WHERE MovieID = @MovieID", new { MovieID }).SingleOrDefault();
-                if (oneMovie == null)
+                using (IDbConnection db = new SqlConnection(connectionString))
                 {
-                    // {message: "movie not found"}
-                    Console.WriteLine("user requested movie does not exist");
-                    return NotFound(new { message = "Movie not found" });
-                }
+                    var oneMovie = db.Query<Movie>
+                        ("SELECT * FROM [dbo].[Movies]" + "WHERE MovieID = @MovieID", new { MovieID }).SingleOrDefault();
+                    if (oneMovie == null)
+                    {
+                        // {message: "movie not found"}
+                        Console.WriteLine("user requested movie does not exist");
+                        return NotFound(new { message = "Movie not found" });
+                    }
 
-                Console.WriteLine("requested movie found");
-                return Ok(oneMovie);
+                    Console.WriteLine("requested movie found");
+                    return Ok(oneMovie);
+                }
+            }
+            catch (SqlException error)
+            {
+                Console.WriteLine("something went wrong");
+                return StatusCode(500, error.ToString());
             }
         }
+           
        
         [HttpPost]
         [Route("MoviesAPI/Movies/Create-Movie")]
         public ActionResult<Movie> AddMovie(string movieName, int ageRating, float price, DateTime releaseDate, string genre)
         {
+            //return BadRequest(new { message = "Please enter the correct information to create a movie" });
             //return Ok("add movie to database");
 
             // create a Movie instance
@@ -95,7 +109,7 @@ namespace MoviesAPI.Controllers
                 //Console.WriteLine(movieInstance.ReleaseDate);
 
                 var connectionString = "server = (local); user id = sa; " +
-                    "password=dvc1174580;initial catalog=MoviesDB";
+                    "password=password999>;initial catalog=Movies";
 
                 Console.WriteLine("user requested movie creation");
 
@@ -119,34 +133,66 @@ namespace MoviesAPI.Controllers
                     var result = db.Execute(newMovieQuery, movieInstance);
 
                     // if result = 1 return Ok(MovieInstance);
-                    Console.WriteLine("movie successfully created");
-                    return Ok(movieInstance); // just says 1 item has been created     
+                    if (result == 1)
+                    {
+                        Console.WriteLine("movie successfully created");
+                        return Ok(movieInstance); 
+                    }
+                    else
+                    {
+                        return BadRequest(new { message = "invalid MovieID, please provide ID greater than 0" });
+                    }
+                       
                 }
             }
-            catch
+            catch (SqlException error)
             {
-                return BadRequest(new { message = "Please enter the correct information to create a movie" });
+                Console.WriteLine("something went wrong");
+                return StatusCode(500, error.ToString());
             }
         }
 
         [HttpDelete("{movieID}")]
-        [Route("MoviesAPI/Movies/Delete-Movie/{movieID:int}")]
+        [Route("MoviesAPI/Movies/Delete-Movie/{movieID}")] //accept any entered 'id' then check if int
         public ActionResult<Movie> DeleteById(int movieID)
         {
+            if (Validation.ValidateID(movieID))
+            {
+                return BadRequest(new { message = "invalid MovieID, please provide ID greater than 0" });
+            }
+
             var connectionString = "server = (local); user id = sa; " +
-                "password=dvc1174580;initial catalog=MoviesDB";
+                "password=password999>;initial catalog=Movies";
 
             Console.WriteLine($"user requested deletion of movie with MovieID: {movieID}");
-
-            using (IDbConnection db = new SqlConnection(connectionString))
+            try
             {
-                string deleteQuery = "DELETE FROM [dbo].[Movies] WHERE MovieID = @MovieID";
-                var result = db.Execute(deleteQuery, new { MovieID = movieID });
+                using (IDbConnection db = new SqlConnection(connectionString))
+                {
+                    string deleteQuery = "DELETE FROM [dbo].[Movies] WHERE MovieID = @MovieID";
+                    var result = db.Execute(deleteQuery, new { MovieID = movieID });
 
-                Console.WriteLine("movie successfully deleted");
-                return Ok(result);
+                    if (result == 1)
+                    {
+                        Console.WriteLine("movie successfully deleted");
+                        return Ok(result);
+                    }
+                    else
+                    {
+                        Console.WriteLine("user requested movie does not exist");
+                        return NotFound(new { message = "Movie not found" });
+                    }
+             
+                }
             }
+            catch (SqlException error)
+            {
+                Console.WriteLine("something went wrong");
+                return StatusCode(500, error.ToString());
+            }
+
         }
+         
 
 
 

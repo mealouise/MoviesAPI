@@ -1,8 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "/Users/kaela/.dotnet/store/|arch|/|tfm|",
-      "/Users/kaela/.nuget/packages"
+      "/Users/codenationstudent/.dotnet/store/|arch|/|tfm|",
+      "/Users/codenationstudent/.nuget/packages"
     ]
   }
 }
