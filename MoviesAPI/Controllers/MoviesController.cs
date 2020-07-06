@@ -61,7 +61,7 @@ namespace MoviesAPI.Controllers
         [Route("MoviesAPI/Movies/movie-details/{MovieID}")] //removed int from the route otherwise can't reach badrequest
         public ActionResult<Movie> GetById(int MovieID)
         {
-            if (Validation.ValidateID(MovieID)) //ADD TO OTHER METHODS
+            if (!Validation.ValidateID(MovieID)) //needs to not be true ie movieID not be valid to return a badrequest
             {
                 return BadRequest(new { message = "invalid MovieID, please provide ID greater than 0" });
             }
@@ -157,7 +157,7 @@ namespace MoviesAPI.Controllers
         [Route("MoviesAPI/Movies/Delete-Movie/{movieID}")] //accept any entered 'id' then check if int
         public ActionResult<Movie> DeleteById([FromRoute]int movieID)
         {
-            if (Validation.ValidateID(movieID))
+            if (!Validation.ValidateID(movieID))
             {
                 return BadRequest(new { message = "invalid MovieID, please provide ID greater than 0" });
             }
