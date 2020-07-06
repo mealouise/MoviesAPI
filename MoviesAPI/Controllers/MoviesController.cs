@@ -22,13 +22,13 @@ namespace MoviesAPI.Controllers
         }
 
         [HttpGet]
-        [Route ("MoviesAPI/Movies/All-Movies")]
-        public ActionResult<List<Movie>>AllMovies()
+        [Route("MoviesAPI/Movies/All-Movies")]
+        public ActionResult<List<Movie>> AllMovies()
         {
             try
             {
                 var connectionString = "server = (local); user id = sa; " +
-                "password=dvc1174580;initial catalog=MoviesDB";
+                "password=password999>;initial catalog=Movies";
 
                 //SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
                 //builder.DataSource = "localhost,1433";
@@ -50,7 +50,7 @@ namespace MoviesAPI.Controllers
                     return Ok(response);
                 }
             }
-           catch (SqlException error)
+            catch (SqlException error)
             {
                 Console.WriteLine("something went wrong");
                 return StatusCode(500, error.ToString());
@@ -66,7 +66,7 @@ namespace MoviesAPI.Controllers
                 return BadRequest(new { message = "invalid MovieID, please provide ID greater than 0" });
             }
             var connectionString = "server = (local); user id = sa; " +
-                "password=dvc1174580;initial catalog=MoviesDB";
+                "password=password999>;initial catalog=Movies";
 
             Console.WriteLine($"user requested details for movie with MovieID: {MovieID}");
             try
@@ -91,8 +91,8 @@ namespace MoviesAPI.Controllers
                 return StatusCode(500, error.ToString());
             }
         }
-           
-       
+
+
         [HttpPost]
         [Route("MoviesAPI/Movies/Create-Movie")]
         public ActionResult<Movie> AddMovie(string movieName, int ageRating, double price, DateTime releaseDate, string genre)
@@ -112,12 +112,12 @@ namespace MoviesAPI.Controllers
             {
                 return BadRequest(new { message = "Please enter valid values" });
             }
-            
+
             try
             {
 
                 var connectionString = "server = (local); user id = sa; " +
-                "password=dvc1174580;initial catalog=MoviesDB";
+                "password=password999>;initial catalog=Movies";
 
                 Console.WriteLine("user requested movie creation");
 
@@ -143,7 +143,7 @@ namespace MoviesAPI.Controllers
                     // if result = 1 return Ok(MovieInstance);
                     Console.WriteLine("movie successfully created");
                     return Ok(movieInstance);
-                       
+
                 }
             }
             catch (SqlException error)
@@ -153,9 +153,9 @@ namespace MoviesAPI.Controllers
             }
         }
 
-        [HttpDelete("{movieID}")]
+        [HttpDelete] // {movieid}
         [Route("MoviesAPI/Movies/Delete-Movie/{movieID}")] //accept any entered 'id' then check if int
-        public ActionResult<Movie> DeleteById(int movieID)
+        public ActionResult<Movie> DeleteById([FromRoute]int movieID)
         {
             if (Validation.ValidateID(movieID))
             {
@@ -163,7 +163,7 @@ namespace MoviesAPI.Controllers
             }
 
             var connectionString = "server = (local); user id = sa; " +
-                "password=dvc1174580;initial catalog=MoviesDB";
+                "password=password999>;initial catalog=Movies";
 
             Console.WriteLine($"user requested deletion of movie with MovieID: {movieID}");
             try
