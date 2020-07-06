@@ -28,12 +28,12 @@ namespace MoviesAPI.Controllers
             try
             {
                 var connectionString = "server = (local); user id = sa; " +
-                "password=dvc1174580;initial catalog=MoviesDB";
+                "password=password999>;initial catalog=Movies";
 
                 //SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
                 //builder.DataSource = "localhost,1433";
                 //builder.UserID = "sa";
-                //builder.Password = "password999>";
+                //builder.Password = "";
                 //builder.InitialCatalog = "Movies";
 
                 Console.WriteLine("all movies requested...");
@@ -66,7 +66,7 @@ namespace MoviesAPI.Controllers
                 return BadRequest(new { message = "invalid MovieID, please provide ID greater than 0" });
             }
             var connectionString = "server = (local); user id = sa; " +
-                "password=dvc1174580;initial catalog=MoviesDB";
+                "password=password999>;initial catalog=Movies";
 
             Console.WriteLine($"user requested details for movie with MovieID: {MovieID}");
             try
@@ -117,7 +117,7 @@ namespace MoviesAPI.Controllers
             {
 
                 var connectionString = "server = (local); user id = sa; " +
-                "password=dvc1174580;initial catalog=MoviesDB";
+                "password=password999>;initial catalog=Movies";
 
                 Console.WriteLine("user requested movie creation");
 
@@ -153,7 +153,7 @@ namespace MoviesAPI.Controllers
             }
         }
 
-        [HttpDelete("{movieID}")]
+        [HttpDelete] //removed {movieid}
         [Route("MoviesAPI/Movies/Delete-Movie/{movieID}")] //accept any entered 'id' then check if int
         public ActionResult<Movie> DeleteById(int movieID)
         {
@@ -163,7 +163,7 @@ namespace MoviesAPI.Controllers
             }
 
             var connectionString = "server = (local); user id = sa; " +
-                "password=dvc1174580;initial catalog=MoviesDB";
+                "password=password999>;initial catalog=Movies";
 
             Console.WriteLine($"user requested deletion of movie with MovieID: {movieID}");
             try
