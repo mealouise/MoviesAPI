@@ -1,9 +1,12 @@
 ﻿<Properties StartupConfiguration="{460527FD-8436-47CB-AED4-9C1701025DE5}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="MoviesAPI/Models/Validation.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MoviesAPI/Web.config">
     <Files>
-      <File FileName="MoviesAPI/Controllers/MoviesController.cs" Line="100" Column="10" />
-      <File FileName="MoviesAPI/Models/Movie.cs" Line="21" Column="12" />
-      <File FileName="MoviesAPI/Models/Validation.cs" Line="1" Column="1" />
+      <File FileName="MoviesAPI/Controllers/MoviesController.cs" Line="178" Column="65" />
+      <File FileName="MoviesAPI/DAL/MovieRepository.cs" Line="60" Column="54" />
+      <File FileName="MoviesAPI/DAL/IMovieRepository.cs" Line="11" Column="9" />
+      <File FileName="MoviesAPI/Models/Movie.cs" Line="17" Column="36" />
+      <File FileName="MoviesAPI/Models/Validation.cs" Line="37" Column="29" />
+      <File FileName="MoviesAPI/Web.config" Line="2" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -12,9 +15,9 @@
             <Node name="MoviesAPI" expanded="True">
               <Node name="Dependencies" expanded="True" />
               <Node name="Controllers" expanded="True" />
-              <Node name="Models" expanded="True">
-                <Node name="Validation.cs" selected="True" />
-              </Node>
+              <Node name="DAL" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Web.config" selected="True" />
             </Node>
           </Node>
         </State>
@@ -23,7 +26,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.MoviesAPI PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.ItemProperties.MoviesAPI PreferredExecutionTarget="/Applications/Firefox.app" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
