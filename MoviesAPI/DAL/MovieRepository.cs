@@ -17,18 +17,19 @@ namespace MoviesAPI.DAL
         {
             //db = new SqlConnection("server = (local); user id = sa; " +
             //    "password=dvc1174580;initial catalog=MoviesDB");
-            db = new SqlConnection("Server=(local);Initial Catalog=MoviesDB;User Id=sa; Password=dvc1174580;");
+            db = new SqlConnection("Server=(local);Initial Catalog=Movies;User Id=sa; Password=password999>;");
             //db = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
         }
 
         public List<Movie> GetAllMoviesFromDB()
         {
-            return db.Query<Movie>("SELECT * FROM [dbo].[Movies]").ToList();
+            return db.Query<Movie>("GetAllMovies", commandType: CommandType.StoredProcedure).ToList();
+            //"SELECT * FROM [dbo].[Movies]".ToList());
         }
 
         public Movie GetMovieFromDB(int MovieID)
         {
-            return db.Query<Movie>("SELECT * FROM [dbo].[Movies]" + "WHERE MovieID = @MovieID", new { MovieID }).SingleOrDefault();
+            return db.Query<Movie>("GetMovie", new { MovieID }, commandType: CommandType.StoredProcedure).SingleOrDefault();
         }
 
         public Movie AddMovieToDB(string MovieName, int AgeRating, double Price, DateTime ReleaseDate, string Genre)
@@ -42,10 +43,10 @@ namespace MoviesAPI.DAL
                 Genre = Genre
             };
 
-            string newMovieQuery = @"INSERT INTO Movies(MovieName, AgeRating, Price, ReleaseDate, Genre) " + "VALUES (@MovieName, @AgeRating, @Price, @ReleaseDate, @Genre)";
+            //string newMovieQuery = @"INSERT INTO Movies(MovieName, AgeRating, Price, ReleaseDate, Genre) " + "VALUES (@MovieName, @AgeRating, @Price, @ReleaseDate, @Genre)";
 
             //var result = db.Execute(newMovieQuery, movieInstance);
-            db.Execute(newMovieQuery, movieInstance);
+            db.Execute("InsertMovie", new { MovieName, AgeRating, Price, ReleaseDate, Genre }, commandType: CommandType.StoredProcedure);
 
             return movieInstance;
 
@@ -57,11 +58,11 @@ namespace MoviesAPI.DAL
 
         public List<Movie> DeleteMovieFromDB(int MovieID)
         {
-            string deleteQuery = "DELETE FROM [dbo].[Movies] WHERE MovieID = @MovieID";
+            //string deleteQuery = "DELETE FROM [dbo].[Movies] WHERE MovieID = @MovieID";
             //var result = db.Execute(deleteQuery, new { MovieID });
-            db.Execute(deleteQuery, new { MovieID });
+            db.Execute("DeleteMovie", new { MovieID }, commandType: CommandType.StoredProcedure);
 
-            return db.Query<Movie>("SELECT * FROM [dbo].[Movies]").ToList();
+            return db.Query<Movie>("GetAllMovies", commandType: CommandType.StoredProcedure).ToList();
         }
     }
 }

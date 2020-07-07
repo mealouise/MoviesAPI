@@ -104,3 +104,7 @@
 /Users/kaela/Code/Projects/MoviesAPI/MoviesAPI/bin/Debug/netcoreapp3.1/System.Configuration.ConfigurationManager.dll
 /Users/kaela/Code/Projects/MoviesAPI/MoviesAPI/bin/Debug/netcoreapp3.1/System.Security.Cryptography.ProtectedData.dll
 /Users/kaela/Code/Projects/MoviesAPI/MoviesAPI/bin/Debug/netcoreapp3.1/runtimes/win/lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll
+/Users/codenationstudent/Projects/MoviesAPI/MoviesAPI/bin/Debug/netcoreapp3.1/Web.config
+/Users/codenationstudent/Projects/MoviesAPI/MoviesAPI/bin/Debug/netcoreapp3.1/System.Configuration.ConfigurationManager.dll
+/Users/codenationstudent/Projects/MoviesAPI/MoviesAPI/bin/Debug/netcoreapp3.1/System.Security.Cryptography.ProtectedData.dll
+/Users/codenationstudent/Projects/MoviesAPI/MoviesAPI/bin/Debug/netcoreapp3.1/runtimes/win/lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll
