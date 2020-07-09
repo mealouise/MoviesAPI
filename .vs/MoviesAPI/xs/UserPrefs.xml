@@ -1,42 +1,42 @@
 ﻿<Properties StartupConfiguration="{460527FD-8436-47CB-AED4-9C1701025DE5}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="MoviesAPI/DAL/MovieRepository.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MoviesAPI/Controllers/MoviesController.cs">
     <Files>
-      <File FileName="MoviesAPI/Controllers/MoviesController.cs" Line="114" Column="96" />
+      <File FileName="MoviesAPI/Controllers/MoviesController.cs" Line="143" Column="42" />
+      <File FileName="MoviesAPI/DAL/MovieRepository.cs" />
+      <File FileName="MoviesAPI/DAL/IMovieRepository.cs" />
       <File FileName="MoviesAPI/Models/Movie.cs" />
-      <File FileName="MoviesAPI/Models/Validation.cs" Line="12" Column="14" />
-      <File FileName="MoviesAPI/Models/ErrorViewModel.cs" Line="1" Column="1" />
-      <File FileName="MoviesAPI/Startup.cs" Line="68" Column="16" />
-      <File FileName="MoviesAPI/Views/Shared/_Layout.cshtml" Line="30" Column="15" />
-      <File FileName="MoviesAPI/DAL/MovieRepository.cs" Line="1" Column="1" />
+      <File FileName="MoviesAPI/Models/Validation.cs" />
+      <File FileName="unit-tests/UnitTest1.cs" />
+      <File FileName="MoviesAPI/Controllers/HomeController.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="MoviesAPI" expanded="True">
             <Node name="MoviesAPI" expanded="True">
-              <Node name="Dependencies" expanded="True">
-                <Node name="FrameworkReferences" expanded="True" />
-                <Node name="PackageDependencies" expanded="True" />
+              <Node name="Controllers" expanded="True">
+                <Node name="MoviesController.cs" selected="True" />
               </Node>
-              <Node name="Controllers" expanded="True" />
-              <Node name="DAL" expanded="True">
-                <Node name="MovieRepository.cs" selected="True" />
-              </Node>
+              <Node name="DAL" expanded="True" />
               <Node name="Models" expanded="True" />
               <Node name="Properties" expanded="True" />
-              <Node name="Views" expanded="True">
-                <Node name="Home" expanded="True" />
-              </Node>
-              <Node name="wwwroot" expanded="True" />
+            </Node>
+            <Node name="unit-tests" expanded="True">
+              <Node name="Dependencies" expanded="True" />
             </Node>
           </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="MoviesAPI" expanded="True" selected="True" />
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.MoviesAPI PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.ItemProperties.MoviesAPI PreferredExecutionTarget="/Applications/Firefox.app" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

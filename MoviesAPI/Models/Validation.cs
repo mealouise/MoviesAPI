@@ -6,7 +6,7 @@ namespace MoviesAPI.Models
         static public Boolean ValidateID(int MovieID) //can never be null, will convert null to 0
         {
 
-            if (MovieID == 0)
+            if (MovieID <= 0)
             {
                 return false;
             }

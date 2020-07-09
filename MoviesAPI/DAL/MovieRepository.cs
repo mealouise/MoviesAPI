@@ -17,8 +17,9 @@ namespace MoviesAPI.DAL
         {
             //db = new SqlConnection("server = (local); user id = sa; " +
             //    "password=dvc1174580;initial catalog=MoviesDB");
-            db = new SqlConnection("Server=(local);Initial Catalog=Movies;User Id=sa; Password=password999>;");
-            //db = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
+            db = new SqlConnection("Server=(local);Initial Catalog=MoviesDB;User Id=sa; Password=dvc1174580;");
+            //string newConnection = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+            //db = new SqlConnection(newConnection);
         }
 
         public List<Movie> GetAllMoviesFromDB()
