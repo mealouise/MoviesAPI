@@ -17,7 +17,7 @@ namespace MoviesAPI.DAL
         {
             //db = new SqlConnection("server = (local); user id = sa; " +
             //    "password=dvc1174580;initial catalog=MoviesDB");
-            db = new SqlConnection("Server=(local);Initial Catalog=MoviesDB;User Id=sa; Password=dvc1174580;");
+            db = new SqlConnection("Server=tcp:talktalkprojectssqlserver.database.windows.net,1433;Initial Catalog=talktalkprojectssqldatabase;Persist Security Info=False;User ID=emma;Password=Codenation12;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             //string newConnection = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             //db = new SqlConnection(newConnection);
         }

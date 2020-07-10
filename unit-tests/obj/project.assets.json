@@ -6666,19 +6666,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/kaela/.nuget/packages/": {}
+    "/Users/codenationstudent/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/kaela/Code/Projects/MoviesAPI/unit-tests/unit-tests.csproj",
+      "projectUniqueName": "/Users/codenationstudent/Projects/MoviesAPI/unit-tests/unit-tests.csproj",
       "projectName": "unit-tests",
-      "projectPath": "/Users/kaela/Code/Projects/MoviesAPI/unit-tests/unit-tests.csproj",
-      "packagesPath": "/Users/kaela/.nuget/packages/",
-      "outputPath": "/Users/kaela/Code/Projects/MoviesAPI/unit-tests/obj/",
+      "projectPath": "/Users/codenationstudent/Projects/MoviesAPI/unit-tests/unit-tests.csproj",
+      "packagesPath": "/Users/codenationstudent/.nuget/packages/",
+      "outputPath": "/Users/codenationstudent/Projects/MoviesAPI/unit-tests/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/kaela/.config/NuGet/NuGet.Config"
+        "/Users/codenationstudent/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -6689,8 +6689,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "/Users/kaela/Code/Projects/MoviesAPI/MoviesAPI/MoviesAPI.csproj": {
-              "projectPath": "/Users/kaela/Code/Projects/MoviesAPI/MoviesAPI/MoviesAPI.csproj"
+            "/Users/codenationstudent/Projects/MoviesAPI/MoviesAPI/MoviesAPI.csproj": {
+              "projectPath": "/Users/codenationstudent/Projects/MoviesAPI/MoviesAPI/MoviesAPI.csproj"
             }
           }
         }
